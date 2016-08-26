@@ -1,0 +1,5 @@
+CREATE DATABASE IF NOT EXISTS d8_test
+  DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_general_ci;
+
+GRANT ALL ON d8_test.* TO vagrant@localhost IDENTIFIED BY 'vagrant';
