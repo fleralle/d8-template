@@ -26,6 +26,17 @@ echo " "
 
 drush site-install -y standard --db-url=mysql://vagrant:vagrant@localhost/d8_test --site-name="Some" --account-pass="password"
 
+#Prepare the custom sync directory, which will sit outside of the web root
+cd /vagrant/
+if [ ! -d configs ]; then
+	mkdir -m777 configs
+fi
+
+echo "\$config_directories['sync'] = '../configs';" >> web/sites/default/settings.php
+
+echo "\$settings['trusted_host_patterns'] = array('some\.dev$',);" >> web/sites/default/settings.php
+
+
 # Enable our custom theme and make it default
 #/home/vagrant/.composer/vendor/bin/drush --strict=0 en -y $2
 #/home/vagrant/.composer/vendor/bin/drush --strict=0 vset theme_default $2
